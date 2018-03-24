@@ -1,7 +1,7 @@
 {
   "name": "hubot-mattermost-slash-command",
-  "description": "Convdrt Mattermost's slash command to outcoming message.",
-  "version": "0.0.0",
+  "description": "It redirects slash command of Mattermost to hubot message.",
+  "version": "0.1.0",
   "author": "eichisanden <eichisanden@gmail.com>",
   "license": "MIT",
   "keywords": "hubot, mattermost, slash command",
