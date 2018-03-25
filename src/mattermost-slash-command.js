@@ -1,5 +1,5 @@
 // Description
-//   Convdrt Mattermost's slash command to outcoming message.
+//   It redirects slash command of Mattermost to hubot message. 
 //
 // Configuration:
 //
