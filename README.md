@@ -25,7 +25,7 @@ Add Slash command to Mattermost.
 
 | Request URL                                             | Request Method |
 |:--------------------------------------------------------|----------------|
-| http://<Your hubot host>/hubot-mattermost-slash-command | POST           |
+| http://Your hubot host/hubot-mattermost-slash-command | POST           |
 
 When executing the slash command, redirects request parameter to Hubot(Using robot.receive).
 
