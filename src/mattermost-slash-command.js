@@ -17,11 +17,11 @@ module.exports = (robot) => {
     const user = robot.brain.userForId(req.body.user_id);
     user.name = req.body.user_name;
     user.room = req.body.channel_name;
-    robot.receive(new TextMessage(user, JSON.stringify(req.body)));
+    robot.receive(new TextMessage(user, req.body.text));
 
     const msg = {};
     msg.response_type = "in_channel";
-    msg.text = "Your order has been received.";
+    msg.text = req.body.user_name + " orders `" + req.body.command + " " + req.body.text + "`";
     res.status(200).send(msg);
     res.end();
   });

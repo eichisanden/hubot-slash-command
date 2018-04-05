@@ -27,13 +27,8 @@ Add Slash command to Mattermost.
 |:--------------------------------------------------------|----------------|
 | http://Your hubot host/hubot-mattermost-slash-command | POST           |
 
-When executing the slash command, redirects request parameter to Hubot(Using robot.receive).
-
-Example Message.
-
-```
-'{"channel_id":"<channel_id>","channel_name":"town-square","command":"/bookmark","response_url":"not supported yet","team_domain":"work","team_id":"<team_id>","text":"http://www.google.com/","token":"<token>","user_id":"<user_id>","user_name":"eichisanden"}'
-```
+When executing the slash command, redirects arguments of slash command to Hubot(Using robot.receive).
+If you input `/some_command hubot ping` send `hubot ping` to Hubot. So you can get message by  `robot.respond(/ping/)`.
 
 You can get message in your Hubot script(robot.hear, robot.respond) and do as you like.
 
