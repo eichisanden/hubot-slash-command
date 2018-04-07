@@ -45,7 +45,7 @@ module.exports = (robot) => {
   });
 };
 
-function applyTemplate(tpl, dict) {
-  Object.keys(dict).forEach((key) => {tpl = tpl.replace(new RegExp('\\${' + key + '}'),'g'), dict[key]});
-  return tpl;
+function applyTemplate(str, dict) {
+  Object.keys(dict).forEach((key) => {str = str.replace(new RegExp('\\${' + key + '}', 'g'), dict[key];});
+  return str;
 }
