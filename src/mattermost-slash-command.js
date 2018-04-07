@@ -22,7 +22,7 @@ module.exports = (robot) => {
 
     const msg = {};
     msg.response_type = "in_channel";
-    const message = `Okey,${req.body.user_name} orders \`${req.body.command} ${req.body.text}\`}`;
+    const message = `Okey, ${req.body.user_name} orders \`${req.body.command} ${req.body.text}\``;
     msg.text = message;
     res.setHeader('Content-Type', 'application/json');
     res.status(200).send(msg);
