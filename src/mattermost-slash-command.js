@@ -2,16 +2,14 @@
 //   It redirects slash command of Mattermost to hubot message. 
 //
 // Configuration:
-//
-// Commands:
-//
-// Notes:
+//   MATTERMOST_RESPONSE_TYPE - 'in_channel' or 'ephemeral'. (Default: 'in_channel')
 //
 // Author:
 //   eichisanden
 
 const TextMessage = require('hubot').TextMessage;
 
+const responseType = process.env.MATTERMOST_RESPONSE_TYPE || 'in_channel';
 
 module.exports = (robot) => {
   robot.router.post('/hubot-mattermost-slash-command', (req, res) => {
@@ -21,7 +19,7 @@ module.exports = (robot) => {
     robot.receive(new TextMessage(user, `${robot.name} ${req.body.text}`));
 
     const msg = {};
-    msg.response_type = "in_channel";
+    msg.response_type = responseType;
     const message = `Okey, ${req.body.user_name} orders \`${req.body.command} ${req.body.text}\``;
     msg.text = message;
     res.setHeader('Content-Type', 'application/json');
