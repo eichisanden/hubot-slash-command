@@ -18,7 +18,7 @@ module.exports = (robot) => {
     const user = robot.brain.userForId(req.body.user_id);
     user.name = req.body.user_name;
     user.room = req.body.channel_name;
-    robot.receive(new TextMessage(user, `${robot.name}` ${req.body.text}`));
+    robot.receive(new TextMessage(user, `${robot.name} ${req.body.text}`));
 
     const msg = {};
     msg.response_type = "in_channel";
