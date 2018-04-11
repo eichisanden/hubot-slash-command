@@ -1,5 +1,5 @@
 // Description
-//   It redirects slash command of Mattermost to hubot message. 
+//   It redirects slash command of Slack or Mattermost to hubot message. 
 //
 // Configuration:
 //   HUBOT_RESPONSE_TYPE - 'in_channel' or 'ephemeral'. (Default: 'in_channel')
@@ -18,7 +18,7 @@ const responseType = process.env.HUBOT_RESPONSE_TYPE || 'in_channel',
       tokens = process.env.HUBOT_SLASH_COMMAND_TOKENS || '';
 
 module.exports = (robot) => {
-  robot.router.post('/hubot-mattermost-slash-command', (req, res) => {
+  robot.router.post('/hubot-slash-command', (req, res) => {
 
     if (!validateToken(tokens, req.body.token)) {
       robot.logger.error("Invlid token.");
