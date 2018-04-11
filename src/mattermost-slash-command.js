@@ -2,19 +2,29 @@
 //   It redirects slash command of Mattermost to hubot message. 
 //
 // Configuration:
-//   MATTERMOST_RESPONSE_TYPE - 'in_channel' or 'ephemeral'. (Default: 'in_channel')
+//   HUBOT_RESPONSE_TYPE - 'in_channel' or 'ephemeral'. (Default: 'in_channel')
+//   HUBOT_RESPONSE_MESSAGE - Response message format to chat
+//   HUBOT_RECEIVE_MESSAGE - Receive message format for hubot
+//   HUBOT_SLASH_COMMAND_TOKENS - Your token of slash command
 //
 // Author:
 //   eichisanden
 
 const TextMessage = require('hubot').TextMessage;
 
-const responseType = process.env.MATTERMOST_RESPONSE_TYPE || 'in_channel';
-const responseMessage = process.env.MATTERMOST_RESPONSE_MESSAGE || "Okey, ${user_name} orders `${command} ${text}`";
-const receiveMessage = process.env.MATTERMOST_RECEIVE_MESSAGE || "${robot_name} ${text}";
+const responseType = process.env.HUBOT_RESPONSE_TYPE || 'in_channel',
+      responseMessage = "HUBOT_RESPONSE_MESSAGE" in process.env ? process.env.HUBOT_RESPONSE_MESSAGE : "Okey, ${user_name} orders `${command} ${text}`",
+      receiveMessage = process.env.HUBOT_RECEIVE_MESSAGE || "${robot_name} ${text}",
+      tokens = process.env.HUBOT_SLASH_COMMAND_TOKENS || '';
 
 module.exports = (robot) => {
   robot.router.post('/hubot-mattermost-slash-command', (req, res) => {
+
+    if (!validateToken(tokens, req.body.token)) {
+      robot.logger.error("Invlid token.");
+      return;
+    }
+
     const dict = {
       robot_name: robot.name,
       robot_alias: robot.alias,
@@ -44,6 +54,15 @@ module.exports = (robot) => {
     res.end();
   });
 };
+
+function validateToken(tokens, token) {
+  for (t of tokens.split(',')) {
+    if (t === token) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function applyTemplate(str, dict) {
   Object.keys(dict).forEach((key) => {str = str.replace(new RegExp('\\${' + key + '}', 'g'), dict[key]);});
