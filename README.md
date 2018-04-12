@@ -33,7 +33,7 @@ Please write down token.
 ## Environment variables
 
 - `HUBOT_RESPONSE_TYPE` default: `in_channel` - `in_channel`(Show a response message to all member) or `ephemeral`(Visible to ther user that issued the command).
-- `HUBOT_RESPONSE_MESSAGE` default: ``Okey, ${user.name} orders `${command} ${text}` `` - Format response message to chat.
+- `HUBOT_RESPONSE_MESSAGE` default: ``Okey, ${user_name} orders `${command} ${text}` `` - Format response message to chat.
 - `HUBOT_RECEIVE_MESSAGE` default: `${robot_name} ${text}` - Format send message to Hubot.
 - `HUBOT_SLASH_COMMAND_TOKENS` default:none - Your tokens of slash command(comma separated).
 
@@ -65,7 +65,7 @@ export HUBOT_SLASH_COMMAND_TOKENS=fpf9t5snkirmmyxanjj15o3uoh,ff33opd7q3nktx3jkoe
 |:------------|:--------|:------|
 |${channel_id}| channel_id|C2147483705|
 |${channel_name}| channel_name|general|
-|${command: req}| command|/some_command|
+|${command}| command|/some_command|
 |${response_url}| response_url|https://hooks.slack.com/commands/12345678|
 |${team_domain}| team_domain|example|
 |${team_id}| team_id|T0001|
