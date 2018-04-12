@@ -33,7 +33,7 @@ Please write down token.
 ## Environment variables
 
 - `HUBOT_RESPONSE_TYPE` default: `in_channel` - `in_channel`(Show a response message to all member) or `ephemeral`(Visible to ther user that issued the command).
-- `HUBOT_RESPONSE_MESSAGE` default: ``Okey, ${user.name} orders `${command} ${text}``` - Format response message to chat.
+- `HUBOT_RESPONSE_MESSAGE` default: ``Okey, ${user.name} orders `${command} ${text}` `` - Format response message to chat.
 - `HUBOT_RECEIVE_MESSAGE` default: `${robot_name} ${text}` - Format send message to Hubot.
 - `HUBOT_SLASH_COMMAND_TOKENS` default:none - Your tokens of slash command(comma separated).
 
