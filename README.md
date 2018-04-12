@@ -1,6 +1,6 @@
 # hubot-slash-command
 
-It redirects slash command of Slack and Mattermost to Hubot.
+It redirects slash command of Slack and Mattermost to Hubot.  
 Outgoing webhook can not be used on the private channel, so use the slash command to accomplish the same thing.
 
 See [`src/hubot-slash-command.js`](src/hubot-slash-command.js) for full documentation.
