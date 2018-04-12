@@ -1,6 +1,7 @@
 # hubot-slash-command
 
-It redirects slash command of Slack or Mattermost to Hubot.
+It redirects slash command of Slack and Mattermost to Hubot.
+Outgoing webhook can not be used on the private channel, so use the slash command to accomplish the same thing.
 
 See [`src/hubot-slash-command.js`](src/hubot-slash-command.js) for full documentation.
 
@@ -12,69 +13,73 @@ In hubot project repo, run:
 
 Then add **hubot-slash-command** to your `external-scripts.json`:
 
-```jsonAfter executing the command, a message will be sent
-
+```
 [
   "hubot-slash-command"
 ]
 ```
+And restart Hubot.
 
-## Usage
+## Add Slash command
 
 Add Slash command to Slack or Mattermost.
 
-| Request URL                                             | Request Method |
-|:--------------------------------------------------------|----------------|
-| http(s)://(your hubot host)/hubot--slash-command        | POST           |
+| Request URL                                                   | Request Method |
+|:--------------------------------------------------------------|----------------|
+| http(s)://(your hubot hostname):(port)/hubot-slash-command    | POST           |
 
-When executing the slash command, redirects arguments of slash command to Hubot(Using robot.receive).  
-If you input `/some_command ping` send `hubot ping` to Hubot.
-
-So you can get message by `robot.respond(/ping/)`.
+Please write down token.
 
 ## Environment variables
 
-- `HUBOT_RESPONSE_TYPE` default: `in_channel` - `in_channel` or `ephemeral`.
-- `HUBOT_RESPONSE_MESSAGE` default: `Okey, ${user.name} ordders ``${command} ${text}``` - Response message format to chat.
-- `HUBOT_RECEIVE_MESSAGE` default: `${robot_name} ${text}` - Receive message format for Hubot.
-- `HUBOT_SLASH_COMMAND_TOKENS` default:none - Your tokens of slash command.
+- `HUBOT_RESPONSE_TYPE` default: `in_channel` - `in_channel`(Show a response message to all member) or `ephemeral`(Visible to ther user that issued the command).
+- `HUBOT_RESPONSE_MESSAGE` default: ``Okey, ${user.name} orders `${command} ${text}``` - Format response message to chat.
+- `HUBOT_RECEIVE_MESSAGE` default: `${robot_name} ${text}` - Format send message to Hubot.
+- `HUBOT_SLASH_COMMAND_TOKENS` default:none - Your tokens of slash command(comma separated).
 
 ## Example for Environment variables
 
 ```
 # the response messages will only be visible to the user that issued the command 
 export HUBOT_RESPONSE_TYPE=ephemeral
-# Response message format to chat.
+# Response message format to Chat.
 export HUBOT_RESPONSE_MESSAGE='${user.name} execute command on ${channel_name}'
-# Receive message format for Hubot.
+# Send message format to Hubot.
 export HUBOT_RECEIVE_MESSAGE='${robot_name} ${text}'
 # Your tokens of slash command.
 export HUBOT_SLASH_COMMAND_TOKENS=fpf9t5snkirmmyxanjj15o3uoh,ff33opd7q3nktx3jkoee17kbya
 ```
 
-## variables for message format
+## Variables for message
 
-- variables from Hubot robot object
+- Variables from Hubot Robot object.
 
-|variable name|parameter|example|
+|Variable name|Parameter|Example|
 |:------------|:--------|:------|
 |${robot_name}|robot.name|Hubot |
 |${robot_alias}|robot.alias|mybot |
 
-- variables from request parameter
+- Variables from request parameter of slash command.
 
-|variable name|parameter|example|
+|Variable name|Parameter|Example|
 |:------------|:--------|:------|
 |${channel_id}| channel_id|C2147483705|
 |${channel_name}| channel_name|general|
 |${command: req}| command|/some_command|
-|${response_url}| response_url|https://hooks.slack.com/commands/1234/5678|
+|${response_url}| response_url|https://hooks.slack.com/commands/12345678|
 |${team_domain}| team_domain|example|
 |${team_id}| team_id|T0001|
 |${text}|text|weater Tokyo|
 |${token}|token|gIkuvaNzQIHg97ATvDxqgjtO|
 |${user_id}|user_id|U2147483697|
 |${user_name}|user_name|Steve|
+
+## Usage
+
+When executing the slash command, redirects arguments of slash command to Hubot.  
+If you input `/some_command ping`, send `hubot ping` to Hubot.
+
+So you can get message by `robot.respond(/ping/)`.
 
 ## License
 
