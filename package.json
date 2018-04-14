@@ -1,7 +1,7 @@
 {
   "name": "hubot-slash-command",
   "description": "It redirects slash command of Slack and Mattermost to hubot message.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "eichisanden",
   "license": "MIT",
   "keywords": "hubot, mattermost, slack, slash command",
