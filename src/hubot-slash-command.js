@@ -42,7 +42,12 @@ module.exports = (robot) => {
 
     const user = robot.brain.userForId(req.body.user_id);
     user.name = req.body.user_name;
-    user.room = req.body.channel_name;
+    // Set channel_id for private channel of Slack
+    if (req.get('user-agent').match(/slack/i)) {
+      user.room = req.body.channel_id;
+    } else {
+      user.room = req.body.channel_name;
+    }
     robot.receive(new TextMessage(user, applyTemplate(receiveMessage, dict)));
 
     const msg = {};
