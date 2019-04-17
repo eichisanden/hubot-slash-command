@@ -17,7 +17,7 @@
     "hubot": "3.x"
   },
   "devDependencies": {
-    "hubot": "3.3.1"
+    "hubot": "3.3.2"
   },
   "main": "index.coffee"
 }
