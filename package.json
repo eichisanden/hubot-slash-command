@@ -14,10 +14,10 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "hubot": "3.x"
+    "hubot": "3.x || 6.x"
   },
   "devDependencies": {
-    "hubot": "3.3.1"
+    "hubot": "6.0.0"
   },
   "main": "index.coffee"
 }
